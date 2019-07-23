@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components'
 
 import Pet from './user/pet';
+import SearchParams from './global/search';
 
 export default function App () {
   return (
@@ -9,9 +10,10 @@ export default function App () {
       <GlobalStyle/>
       <Background>
         <h1 id='first'>Adopt me!</h1>
-        <Pet name='Luna' animal='Dog' breed='red' />
+        {/* <Pet name='Luna' animal='Dog' breed='red' />
         <Pet name='Azor' animal='Dog' breed='brown' />
-        <Pet name='Mruczek' animal='Caty' breed='black' />
+        <Pet name='Mruczek' animal='Caty' breed='black' /> */}
+        <SearchParams />
       </Background>
     </section>
   )
