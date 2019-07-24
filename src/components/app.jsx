@@ -1,21 +1,25 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components'
-
-import Pet from './user/pet';
+import { Router, Link } from '@reach/router';
 import SearchParams from './global/search';
+import Details from './global/details';
 
 export default function App () {
   return (
-    <section>
-      <GlobalStyle/>
-      <Background>
-        <h1 id='first'>Adopt me!</h1>
-        {/* <Pet name='Luna' animal='Dog' breed='red' />
-        <Pet name='Azor' animal='Dog' breed='brown' />
-        <Pet name='Mruczek' animal='Caty' breed='black' /> */}
-        <SearchParams />
-      </Background>
-    </section>
+    <React.StrictMode>
+      <section>
+        <GlobalStyle/>
+        <Background>
+          <Link to='/'>
+            <h1 id='first'>Adopt me!</h1>
+          </Link>
+          <Router>
+            <SearchParams path='/'/>
+            <Details path='/details/:id' />
+          </Router>
+        </Background>
+      </section>
+    </React.StrictMode>
   )
 };
 
