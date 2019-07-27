@@ -1,12 +1,13 @@
 /* eslint-disable import/no-unresolved */
-import React, {useState} from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import ThemeContext from './global/themeContext';
 import { Router, Link } from '@reach/router';
 
 import SearchParams from './global/search';
-import Details from './global/details';
+import NavBar from './global/navBar';
 
+const Details = lazy(() => import('./global/details'));
 
 export default function App () {
   const themeHook = useState({
@@ -18,14 +19,18 @@ export default function App () {
       <ThemeContext.Provider value={themeHook}>
         <section>
           <GlobalStyle/>
+          <NavBar />
           <Background>
             <Link to='/'>
               <h1 id='first'>Adopt me!</h1>
             </Link>
-            <Router>
-              <SearchParams path='/'/>
-              <Details path='/details/:id' />
-            </Router>
+            <Suspense fallback={<h1>loading route...</h1>}>
+              <Router>
+                <SearchParams path='/'/>
+                <Details path='/details/:id' />
+              </Router>
+            </Suspense>
+            
           </Background>
         </section>
       </ThemeContext.Provider>
