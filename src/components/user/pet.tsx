@@ -1,7 +1,24 @@
 import React from 'react';
 import { Link } from '@reach/router';
+import { Photo } from '@frontendmasters/pet';
 
-export default function Pet({ name, animal, breed, media, location, id }) {
+interface IProps {
+  name: string;
+  animal: string;
+  breed: string;
+  media: Array<Photo>;
+  location: string;
+  id: number;
+}
+
+export default function Pet({
+  name,
+  animal,
+  breed,
+  media,
+  location,
+  id,
+}: IProps) {
   let hero = 'http://placecorgi.com/300/300';
 
   if (media.length) {
@@ -9,9 +26,9 @@ export default function Pet({ name, animal, breed, media, location, id }) {
   }
 
   return (
-    <Link to={`details/${id}`} className='pet'>
+    <Link to={`details/${id}`} className="pet">
       <div className="image-cont">
-        <img src={hero} alt={name}/>
+        <img src={hero} alt={name} />
       </div>
       <div className="info-cont">
         <h1>{name}</h1>

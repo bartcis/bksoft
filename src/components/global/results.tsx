@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import Pet from '../user/pet';
+import { Animal } from '@frontendmasters/pet';
 
-const Results = ({ pets }) => {
+interface IProps {
+  pets: Animal[];
+}
+
+const Results: FunctionComponent<IProps> = ({ pets }) => {
   return (
     <div>
       {pets.length === 0 ? (
@@ -18,9 +23,9 @@ const Results = ({ pets }) => {
             id={pet.id}
           />
         ))
-      )} 
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default Results;

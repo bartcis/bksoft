@@ -6,22 +6,32 @@
   "author": "bartcis <cis.bart@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "build": "parcel build --public-url ./dist/ src/index.html",
     "format": "prettier \"src/**/*.{js,html}\" --write",
-    "lint": "eslint \"src/**/*.{js, jsx}\" --quiet",
+    "lint": "tslint --project",
     "dev": "parcel src/index.html",
-    "dev:mock": "cross-env PET_MOCK=mock npm run dev"
+    "dev:mock": "cross-env PET_MOCK=mock npm run dev",
+    "start": "npm -s run build && babel-node server/index.js",
+    "clear-build-cache": "rm -rf .cache/ dist/",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.2",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@types/reach__router": "^1.2.4",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.5",
+    "@types/styled-components": "^4.1.18",
     "cross-env": "^5.2.0",
-    "eslint": "^6.0.1",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.14.2",
-    "eslint-plugin-react-hooks": "^1.6.1",
     "parcel-bundler": "^1.12.3",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.5.3"
   },
   "dependencies": {
     "@frontendmasters/pet": "^1.0.3",
