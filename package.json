@@ -13,7 +13,8 @@
     "dev:mock": "cross-env PET_MOCK=mock npm run dev",
     "start": "npm -s run build && babel-node server/index.js",
     "clear-build-cache": "rm -rf .cache/ dist/",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -21,13 +22,18 @@
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "@testing-library/react": "^8.0.7",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.6.8",
     "@types/reach__router": "^1.2.4",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.5",
     "@types/styled-components": "^4.1.18",
     "cross-env": "^5.2.0",
+    "jest": "^24.8.0",
     "parcel-bundler": "^1.12.3",
     "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
     "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.0.0",

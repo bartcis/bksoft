@@ -12,6 +12,7 @@ const useDropdown = (
     <label>
       {label}
       <select
+        data-testid={id}
         id={id}
         value={state}
         onChange={e => setState(e.target.value)}
