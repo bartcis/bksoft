@@ -1,13 +1,17 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 
-import pet, { ANIMALS, _breeds, _dogs } from '../../__mocks__/pet';
+import pet, {
+  ANIMALS,
+  _breeds,
+  _dogs,
+} from '../../__mocks__/@frontendmasters/pet';
 import SearchParams from '../components/global/search';
 
 afterEach(cleanup);
 
-test('Search cpomonent', async () => {
-  const { getByTestId } = render(<SearchParams />);
+test('Search component', async () => {
+  const { container, getByTestId, getByText } = render(<SearchParams />);
 
   const animalDropdown = getByTestId('use-dropdown-animal');
   expect(animalDropdown.children.length).toEqual(ANIMALS.length + 1);
