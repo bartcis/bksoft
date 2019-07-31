@@ -14,7 +14,10 @@
     "start": "npm -s run build && babel-node server/index.js",
     "clear-build-cache": "rm -rf .cache/ dist/",
     "typecheck": "tsc --noEmit",
-    "test": "jest"
+    "test": "jest",
+    "test:update": "jest -u",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
