@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 import React, { lazy } from 'react';
 import pet, { Photo } from '@frontendmasters/pet';
-import ThemeContext from './themeContext';
+import AppContext from './AppContext';
 import { navigate, RouteComponentProps } from '@reach/router';
 
 import { Query } from 'react-apollo';
@@ -9,7 +9,6 @@ import gql from 'graphql-tag';
 
 import Carousel from './carousel';
 import ErrorBoundary from './errorBoundary';
-import console = require('console');
 
 interface IProps {
   id: string;
@@ -26,6 +25,12 @@ interface IState {
   description: string;
   media: Array<Photo>;
   breed: string;
+}
+
+interface ITypes {
+  loading: boolean;
+  error: string;
+  data: Object;
 }
 
 const countiresQuery = gql`
@@ -108,28 +113,24 @@ class Details extends React.Component<RouteComponentProps<IProps>, IState> {
         {({ loading, error, data }) => {
           if (loading) return <div>Ładuje dane...</div>;
           if (error) return <div>Wystąpił błąd</div>;
-
-          const countries = data.countries;
-
-          console.log(countries);
           return (
             <div>
               <Carousel media={media} />
               <div>
                 <h1>{name}</h1>
                 <h2>{`${animal} - ${breed} - ${location}`}</h2>
-                <ThemeContext.Consumer>
+                <AppContext.Consumer>
                   {([theme]) => (
                     <button
                       onClick={this.toggleModal}
-                      style={{ backgroundColor: theme.buttonColor }}
+                      style={{ backgroundColor: theme.theme.buttonColor }}
                     >
                       Adopt {name}
                     </button>
                   )}
-                </ThemeContext.Consumer>
+                </AppContext.Consumer>
                 <p>{description}</p>
-                {showModal ? (
+                { showModal ? (
                   <Modal>
                     <div>
                       <h1>Would you like to adpot {name}?</h1>
@@ -137,7 +138,7 @@ class Details extends React.Component<RouteComponentProps<IProps>, IState> {
                       <button onClick={this.toggleModal}>No</button>
                     </div>
                   </Modal>
-                ) : null}
+                ) : null }
               </div>
             </div>
           );

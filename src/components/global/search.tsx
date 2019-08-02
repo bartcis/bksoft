@@ -5,11 +5,12 @@ import React, {
   FunctionComponent,
 } from 'react';
 import pet, { ANIMALS, Animal } from '@frontendmasters/pet';
-import ThemeContext from './themeContext';
+import AppContext from './AppContext';
 import { RouteComponentProps } from '@reach/router';
 
 import useDropdown from './useDropdown';
 import Results from './results';
+import { Theme } from './designSystem/themeExport';
 
 const SearchParams: FunctionComponent<RouteComponentProps> = () => {
   const [location, setLocation] = useState('Seattle, WA');
@@ -19,7 +20,7 @@ const SearchParams: FunctionComponent<RouteComponentProps> = () => {
   const [animal, AnimalDropdown] = useDropdown('Animal', 'dog', ANIMALS);
   const [breed, BreedDropdown, setBreed] = useDropdown('Breed', '', breeds);
   const [pets, setPets] = useState([] as Animal[]);
-  const [theme, setTheme] = useContext(ThemeContext);
+  const [theme, setTheme] = useContext(AppContext);
 
   async function requestPets() {
     const { animals } = await pet.animals({
@@ -87,16 +88,14 @@ const SearchParams: FunctionComponent<RouteComponentProps> = () => {
         <label htmlFor="theme">
           Theme
           <select
-            value={theme}
-            onChange={e => setTheme({ buttonColor: e.target.value })}
-            onBlur={e => setTheme({ buttonColor: e.target.value })}
+            onChange={e => setTheme({ theme: e.target.value })}
+            onBlur={e => setTheme({ theme: e.target.value })}
           >
-            <option value="peru">Peru</option>
-            <option value="green">Green</option>
-            <option value="blue">Blue</option>
+            <option value="base">Base</option>
+            <option value="graves">Graves</option>
           </select>
         </label>
-        <button style={{ backgroundColor: theme.buttonColor }}>Submit</button>
+        <button style={{ backgroundColor: theme.theme.buttonColor }}>Submit</button>
       </form>
       <Results pets={pets} />
     </div>
