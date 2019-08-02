@@ -32,6 +32,7 @@
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.5",
     "@types/styled-components": "^4.1.18",
+    "apollo-server": "^2.8.1",
     "cross-env": "^5.2.0",
     "jest": "^24.8.0",
     "parcel-bundler": "^1.12.3",
@@ -45,8 +46,13 @@
   "dependencies": {
     "@frontendmasters/pet": "^1.0.3",
     "@reach/router": "^1.2.1",
-    "react": "15.x || 16.x || 16.4.0-alpha.0911da3",
-    "react-dom": "15.x || 16.x || 16.4.0-alpha.0911da3",
+    "apollo-cache-inmemory": "^1.6.2",
+    "apollo-client": "^2.6.3",
+    "apollo-link-http": "^1.5.15",
+    "graphql": "0.11.7 || ^0.12.0 || ^0.13.0 || ^14.0.0",
+    "react": "^15.0.0 || ^16.0.0",
+    "react-apollo": "^2.5.8",
+    "react-dom": "^15.0.0 || ^16.0.0",
     "styled-components": "^4.3.2"
   },
   "browserslist": [

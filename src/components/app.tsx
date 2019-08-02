@@ -4,10 +4,24 @@ import styled, { createGlobalStyle } from 'styled-components';
 import ThemeContext from './global/themeContext';
 import { Router, Link } from '@reach/router';
 
+import { ApolloProvider } from 'react-apollo';
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
 import SearchParams from './global/search';
 import NavBar from './global/navBar';
 
 const Details = lazy(() => import('./global/details'));
+
+const httpLink = createHttpLink({
+  uri: 'http://localhost:4000',
+});
+
+const client = new ApolloClient({
+  link: httpLink,
+  cache: new InMemoryCache(),
+});
 
 export default function App() {
   const themeHook = useState({
@@ -16,23 +30,25 @@ export default function App() {
 
   return (
     <React.StrictMode>
-      <ThemeContext.Provider value={themeHook}>
-        <section>
-          <GlobalStyle />
-          <NavBar />
-          <Background>
-            <Link to="/">
-              <h1 id="first">Adopt me!</h1>
-            </Link>
-            <Suspense fallback={<h1>loading route...</h1>}>
-              <Router>
-                <SearchParams path="/" />
-                <Details path="/details/:id" id="" />
-              </Router>
-            </Suspense>
-          </Background>
-        </section>
-      </ThemeContext.Provider>
+      <ApolloProvider client={client}>
+        <ThemeContext.Provider value={themeHook}>
+          <section>
+            <GlobalStyle />
+            <NavBar />
+            <Background>
+              <Link to="/">
+                <h1 id="first">Adopt me!</h1>
+              </Link>
+              <Suspense fallback={<h1>loading route...</h1>}>
+                <Router>
+                  <SearchParams path="/" />
+                  <Details path="/details/:id" id="" />
+                </Router>
+              </Suspense>
+            </Background>
+          </section>
+        </ThemeContext.Provider>
+      </ApolloProvider>
     </React.StrictMode>
   );
 }

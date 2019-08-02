@@ -4,8 +4,12 @@ import pet, { Photo } from '@frontendmasters/pet';
 import ThemeContext from './themeContext';
 import { navigate, RouteComponentProps } from '@reach/router';
 
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+
 import Carousel from './carousel';
 import ErrorBoundary from './errorBoundary';
+import console = require('console');
 
 interface IProps {
   id: string;
@@ -23,6 +27,16 @@ interface IState {
   media: Array<Photo>;
   breed: string;
 }
+
+const countiresQuery = gql`
+  {
+    countries {
+      name
+      population
+      inNato
+    }
+  }
+`;
 
 const Modal = lazy(() => import('./modal'));
 
@@ -90,33 +104,45 @@ class Details extends React.Component<RouteComponentProps<IProps>, IState> {
     } = this.state;
 
     return (
-      <div>
-        <Carousel media={media} />
-        <div>
-          <h1>{name}</h1>
-          <h2>{`${animal} - ${breed} - ${location}`}</h2>
-          <ThemeContext.Consumer>
-            {([theme]) => (
-              <button
-                onClick={this.toggleModal}
-                style={{ backgroundColor: theme.buttonColor }}
-              >
-                Adopt {name}
-              </button>
-            )}
-          </ThemeContext.Consumer>
-          <p>{description}</p>
-          {showModal ? (
-            <Modal>
+      <Query query={countiresQuery}>
+        {({ loading, error, data }) => {
+          if (loading) return <div>Ładuje dane...</div>;
+          if (error) return <div>Wystąpił błąd</div>;
+
+          const countries = data.countries;
+
+          console.log(countries);
+          return (
+            <div>
+              <Carousel media={media} />
               <div>
-                <h1>Would you like to adpot {name}?</h1>
-                <button onClick={this.adopt}>Yes</button>
-                <button onClick={this.toggleModal}>No</button>
+                <h1>{name}</h1>
+                <h2>{`${animal} - ${breed} - ${location}`}</h2>
+                <ThemeContext.Consumer>
+                  {([theme]) => (
+                    <button
+                      onClick={this.toggleModal}
+                      style={{ backgroundColor: theme.buttonColor }}
+                    >
+                      Adopt {name}
+                    </button>
+                  )}
+                </ThemeContext.Consumer>
+                <p>{description}</p>
+                {showModal ? (
+                  <Modal>
+                    <div>
+                      <h1>Would you like to adpot {name}?</h1>
+                      <button onClick={this.adopt}>Yes</button>
+                      <button onClick={this.toggleModal}>No</button>
+                    </div>
+                  </Modal>
+                ) : null}
               </div>
-            </Modal>
-          ) : null}
-        </div>
-      </div>
+            </div>
+          );
+        }}
+      </Query>
     );
   }
 }
