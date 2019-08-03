@@ -13,59 +13,109 @@ import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import App from './components/App';
+import console = require('console');
 
 const httpLink = createHttpLink({
-    uri: 'http://localhost:4000',
+  uri: 'http://localhost:4000',
 });
 
 const client = new ApolloClient({
-    link: httpLink,
-    cache: new InMemoryCache(),
+  link: httpLink,
+  cache: new InMemoryCache(),
 });
 
-function AppWrapper() {
-    const appHook = useState({
-        theme: 'base'
-    });
+let currentTheme: string;
 
-    return (
-        <React.StrictMode>
-            <ApolloProvider client={client}>
-                <ThemeProvider theme={styledTheme}>
-                    <AppContext.Provider value={appHook}>
-                        <GlobalStyle />
-                        <App />
-                    </AppContext.Provider>
-                </ThemeProvider>
-            </ApolloProvider>
-        </React.StrictMode>
-    );
+function AppWrapper() {
+  const appHook = useState({
+    theme: 'base',
+  });
+
+  currentTheme = appHook[0].theme;
+
+  return (
+    <React.StrictMode>
+      <ApolloProvider client={client}>
+        <ThemeProvider theme={styledTheme}>
+          <AppContext.Provider value={appHook}>
+            <GlobalStyle />
+            <App />
+          </AppContext.Provider>
+        </ThemeProvider>
+      </ApolloProvider>
+    </React.StrictMode>
+  );
 }
 
 const GlobalStyle = createGlobalStyle`
-    body {
-        margin: 0;
-        padding: 0;
-    }
+  @font-face {
+    font-family: 'nunito_sansblack';
+    src: url('./fonts/nunitosans-black-webfont.woff2') format('woff2'),
+      url('./fonts/nunitosans-black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+  font-family: 'nunito_sansregular';
+  src: url('./fonts/nunitosans-regular-webfont.woff2') format('woff2'),
+    url('./fonts/nunitosans-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'nunito_sansextralight';
+    src: url('./fonts/nunitosans-extralight-webfont.woff2') format('woff2'),
+      url('./fonts/nunitosans-extralight-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: ${() => styledTheme.styledColors[currentTheme].body};
+  }
 
     h1 {
-        color: red;
+      color: ${() => styledTheme.styledColors[currentTheme].mainText};
+      font-family: 'nunito_sansblack';
     }
 
     h2 {
-        color: purple;
+      color: ${() => styledTheme.styledColors[currentTheme].mainText};
+      font-family: 'nunito_sansblack';
     }
 
     h3 {
-        color: orange;
+      color: orange;
     }
 
     h4 {
         color: yellow;
     }
 
+    h5 {
+      color: ${() => styledTheme.styledColors[currentTheme].residualText};
+      font-family: 'nunito_sansextralight';
+    }
+
     p {
-        color: blue;
+      color: ${() => styledTheme.styledColors[currentTheme].mainText};
+      font-family: 'nunito_sansregular';
+    }
+
+    .link {
+      text-decoration: none;
+      color: ${() => styledTheme.styledColors[currentTheme].link};
+      transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+      &:hover {
+        color: ${() => styledTheme.styledColors[currentTheme].hoverState};
+      }
+      &--footer {
+        margin: 0 .5rem;
+      }
     }
 `;
 

@@ -95,7 +95,9 @@ const SearchParams: FunctionComponent<RouteComponentProps> = () => {
             <option value="graves">Graves</option>
           </select>
         </label>
-        <button style={{ backgroundColor: theme.theme.buttonColor }}>Submit</button>
+        <button style={{ backgroundColor: theme.theme.buttonColor }}>
+          Submit
+        </button>
       </form>
       <Results pets={pets} />
     </div>

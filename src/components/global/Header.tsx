@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from '@reach/router';
 import styled from 'styled-components';
+
+import Logo from './Logo';
 
 interface IProps {
   theme: string;
@@ -9,22 +10,25 @@ interface IProps {
 let currentTheme: string;
 
 const Header = (props: IProps) => {
-
   currentTheme = props.theme;
 
   return (
     <Head>
-      <Link to='/'>LOGO</Link>
-      <h1>BK Soft</h1>
+      <Logo />
     </Head>
-  )
-}
+  );
+};
 
 export default Header;
 
 const Head = styled.header`
-  width: 100vw;
-  height: 60px;
+  background-color: ${({ theme }) =>
+    theme.styledColors[currentTheme].background};
   display: flex;
-  background-color: ${({ theme }) => theme.styledColors[currentTheme].header};
-`
+  border-bottom: 1px solid
+    ${({ theme }) => theme.styledColors[currentTheme].border};
+  padding: 0 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 0 0.75rem 0.75rem;
+`;
