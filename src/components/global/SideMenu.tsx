@@ -18,21 +18,27 @@ const StyledSideMenu = ({ theme, data }: IProps) => {
 
   return (
     <Menu>
-      <h2 dangerouslySetInnerHTML={{ __html: data.title }}></h2>
-      <ul>
-        {data.menu.map(item => (
-          <li key={item.label}>
-            <StyledLink to={item.link}>
-              <p dangerouslySetInnerHTML={{ __html: item.label }}></p>
-            </StyledLink>
-          </li>
-        ))}
-      </ul>
+      <Content>
+        <h2 dangerouslySetInnerHTML={{ __html: data.title }}></h2>
+        <ul>
+          {data.menu.map(item => (
+            <li key={item.label}>
+              <StyledLink to={item.link}>
+                <p dangerouslySetInnerHTML={{ __html: item.label }}></p>
+              </StyledLink>
+            </li>
+          ))}
+        </ul>
+      </Content>
     </Menu>
   );
 };
 
 export default StyledSideMenu;
+
+const Content = styled.div`
+  position: fixed;
+`;
 
 const Menu = styled.aside`
   width: 200px;
