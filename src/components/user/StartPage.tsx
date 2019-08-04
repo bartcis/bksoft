@@ -1,11 +1,23 @@
-import React, { FunctionComponent, useContext } from 'react';
-import { Link, RouteComponentProps } from '@reach/router';
+import React, {
+  FunctionComponent,
+  useContext,
+  useEffect,
+  Suspense,
+  lazy,
+} from 'react';
+import { Link, RouteComponentProps, Router } from '@reach/router';
 import { Photo } from '@frontendmasters/pet';
 
-import SearchParams from '../global/search';
-import ContentLayout from '../global/ContentLayout';
+import ContentLayout from '../global/styled/ContentLayout';
 import AppContext from '../global/AppContext';
 import StyledSideMenu from '../global/SideMenu';
+import PageLayout from '../global/styled/PageLayout';
+import Header from '../global/Header';
+import Footer from '../global/Footer';
+import TestList from './TestsList';
+import About from './About';
+
+// const About = lazy(() => import('./About'));
 
 interface IProps {
   name: string;
@@ -17,14 +29,14 @@ interface IProps {
 }
 
 const StartPage: FunctionComponent<RouteComponentProps> = () => {
-  const [theme] = useContext(AppContext);
+  const [theme, setTheme] = useContext(AppContext);
 
   const toRender = {
     title: 'Strona Główna',
     menu: [
       {
         label: 'Start',
-        link: '/',
+        link: '/start',
       },
       {
         label: 'O aplikacji',
@@ -41,17 +53,11 @@ const StartPage: FunctionComponent<RouteComponentProps> = () => {
     ],
   };
 
-  return (
-    <ContentLayout>
-      <StyledSideMenu theme={theme.theme} data={toRender} />
-      <div>
-        <h1>ABC</h1>
-        <h1>ABC</h1>
-        <h1>ABC</h1>
-        <SearchParams></SearchParams>
-      </div>
-    </ContentLayout>
-  );
+  useEffect(() => {
+    setTheme({ theme: 'base' });
+  }, [setTheme]);
+
+  return <h1>Wybierz test psychologiczny:</h1>;
 };
 
 export default StartPage;

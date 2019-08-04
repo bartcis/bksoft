@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import Logo from './Logo';
-
-interface IProps {
-  theme: string;
-}
+import AppContext from './AppContext';
 
 let currentTheme: string;
 
-const Header = (props: IProps) => {
-  currentTheme = props.theme;
+const Header = () => {
+  const [theme] = useContext(AppContext);
+
+  currentTheme = theme.theme;
 
   return (
     <Head>
@@ -22,13 +21,16 @@ const Header = (props: IProps) => {
 export default Header;
 
 const Head = styled.header`
+  position: fixed;
+  width: 100%;
+  height: 4rem;
   background-color: ${({ theme }) =>
     theme.styledColors[currentTheme].background};
   display: flex;
   border-bottom: 1px solid
     ${({ theme }) => theme.styledColors[currentTheme].border};
-  padding: 0 0.5rem;
+  padding: 0 1rem;
   justify-content: space-between;
   align-items: center;
-  border-radius: 0 0 0.75rem 0.75rem;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 `;

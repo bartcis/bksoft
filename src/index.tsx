@@ -76,20 +76,26 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     background-color: ${() => styledTheme.styledColors[currentTheme].body};
+    box-sizing: border-box;
   }
 
     h1 {
       color: ${() => styledTheme.styledColors[currentTheme].mainText};
       font-family: 'nunito_sansblack';
+      font-size: 1.5rem;
+      margin: 1rem 0;
     }
 
     h2 {
       color: ${() => styledTheme.styledColors[currentTheme].mainText};
       font-family: 'nunito_sansblack';
+      font-size: 1.25rem;
     }
 
     h3 {
-      color: orange;
+      font-family: 'nunito_sansblack';
+      text-transform: uppercase;
+      font-size: 1rem;
     }
 
     h4 {

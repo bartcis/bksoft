@@ -1,19 +1,23 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
-  type Book {
+  type SingleMenuList {
+    label: String
+    link: String
+  }
+
+  type SingleMenu {
     title: String
-    author: String
+    slug: String
+    list: [SingleMenuList]
   }
-  type Country {
-    name: String
-    population: String
-    inNato: Boolean
-    id: String
+
+  type Menu {
+    main: SingleMenu
   }
+
   type Query {
-    books: [Book]
-    countries: [Country]
+    menusQuery: [Menu]
   }
 `;
 

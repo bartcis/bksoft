@@ -1,12 +1,15 @@
 const { ApolloServer } = require('apollo-server');
 
-const api = require('./server/api');
+// const api = require('./server/api');
+const menus = require('./server/api');
+
 const typeDefs = require('./server/schema');
+
+console.log(menus);
 
 const resolvers = {
   Query: {
-    books: () => api.books,
-    countries: () => api.countries
+    menusQuery: () => menus,
   },
 };
 

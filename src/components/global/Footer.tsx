@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-
-interface IProps {
-  theme: string;
-}
+import AppContext from './AppContext';
 
 let currentTheme: string;
 
-const Footer = (props: IProps) => {
-  currentTheme = props.theme;
+const Footer = () => {
+  const [theme] = useContext(AppContext);
+
+  currentTheme = theme.theme;
 
   return (
     <Foot>
@@ -37,7 +36,6 @@ const Foot = styled.footer`
   padding: 0 0.5rem;
   justify-content: flex-end;
   align-items: center;
-  border-radius: 0.75rem 0.75rem 0 0;
   h5 {
     margin: 0;
   }

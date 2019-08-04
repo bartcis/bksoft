@@ -1,30 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import console = require('console');
 import { Link } from '@reach/router';
+import AppContext from './AppContext';
 
 interface IProps {
-  theme: string;
   data: {
     title: string;
-    menu: { label: string; link: string }[];
+    list: { label: string; link: string }[];
+    slug: any;
   };
+  path: string;
 }
 
 let currentTheme: string;
 
-const StyledSideMenu = ({ theme, data }: IProps) => {
-  currentTheme = theme;
+const SideMenu = ({ data }: IProps) => {
+  const [theme] = useContext(AppContext);
+
+  currentTheme = theme.theme;
 
   return (
     <Menu>
       <Content>
         <h2 dangerouslySetInnerHTML={{ __html: data.title }}></h2>
         <ul>
-          {data.menu.map(item => (
+          {data.list.map(item => (
             <li key={item.label}>
               <StyledLink to={item.link}>
-                <p dangerouslySetInnerHTML={{ __html: item.label }}></p>
+                <h3 dangerouslySetInnerHTML={{ __html: item.label }}></h3>
               </StyledLink>
             </li>
           ))}
@@ -34,22 +37,28 @@ const StyledSideMenu = ({ theme, data }: IProps) => {
   );
 };
 
-export default StyledSideMenu;
+export default SideMenu;
 
 const Content = styled.div`
   position: fixed;
+  width: 207px;
+  max-width: 207px;
+  height: 100%;
+  padding: 1rem;
+  background-color: ${({ theme }) =>
+    theme.styledColors[currentTheme].backgroundTwo};
+  border-right: 1px solid
+    ${({ theme }) => theme.styledColors[currentTheme].border};
 `;
 
 const Menu = styled.aside`
-  width: 200px;
-  background-color: ${({ theme }) =>
-    theme.styledColors[currentTheme].background};
-  border-right: 1px solid
-    ${({ theme }) => theme.styledColors[currentTheme].border};
-  padding: 1rem;
-  border-radius: 0 0.75rem 0.75rem 0;
+  width: 240px;
   h2 {
     margin: 0;
+    color: ${({ theme }) => theme.styledColors[currentTheme].link};
+    height: 3rem;
+    border-bottom: 1px solid
+      ${({ theme }) => theme.styledColors[currentTheme].borderTwo};
   }
   ul {
     padding: 0;
@@ -63,14 +72,13 @@ const Menu = styled.aside`
 const StyledLink = styled(Link)`
   text-decoration: none;
   :hover {
-    p {
+    h3 {
       color: ${({ theme }) => theme.styledColors[currentTheme].hoverState};
     }
   }
-  p {
+  h3 {
     margin: 0;
-    text-transform: uppercase;
-    color: ${({ theme }) => theme.styledColors[currentTheme].link};
+    color: ${({ theme }) => theme.styledColors[currentTheme].mainText};
     transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
 `;
