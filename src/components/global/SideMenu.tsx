@@ -3,37 +3,62 @@ import styled from 'styled-components';
 import { Link } from '@reach/router';
 import AppContext from './AppContext';
 
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import console = require('console');
+
 interface IProps {
-  data: {
-    title: string;
-    list: { label: string; link: string }[];
-    slug: any;
-  };
-  path: string;
+  type: string;
+  path: string[];
 }
 
 let currentTheme: string;
 
-const SideMenu = ({ data }: IProps) => {
+const menusQuery = gql`
+  {
+    menusQuery {
+      main {
+        title
+        slug
+        list {
+          link
+          label
+        }
+      }
+    }
+  }
+`;
+
+const SideMenu = ({ type }: IProps) => {
   const [theme] = useContext(AppContext);
 
+  console.log(type);
   currentTheme = theme.theme;
 
   return (
-    <Menu>
-      <Content>
-        <h2 dangerouslySetInnerHTML={{ __html: data.title }}></h2>
-        <ul>
-          {data.list.map(item => (
-            <li key={item.label}>
-              <StyledLink to={item.link}>
-                <h3 dangerouslySetInnerHTML={{ __html: item.label }}></h3>
-              </StyledLink>
-            </li>
-          ))}
-        </ul>
-      </Content>
-    </Menu>
+    <Query query={menusQuery}>
+      {({ loading, error, data }) => {
+        if (loading) return <div>Ładuje dane...</div>;
+        if (error) return <div>Wystąpił błąd {error}</div>;
+        console.log(data);
+        return (
+          <Menu>
+            <Content>
+              <h2 dangerouslySetInnerHTML={{ __html: data.title }}></h2>
+              <ul>
+                {/* {data.list.map(item => (
+                  <li key={item.label}>
+                    <StyledLink to={item.link}>
+                      <h3 dangerouslySetInnerHTML={{ __html: item.label }}></h3>
+                    </StyledLink>
+                  </li>
+                ))} */}
+              </ul>
+            </Content>
+          </Menu>
+        );
+      }}
+    </Query>
   );
 };
 

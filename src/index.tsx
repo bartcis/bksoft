@@ -5,7 +5,10 @@ import { render } from 'react-dom';
 import { createGlobalStyle } from 'styled-components';
 import { ThemeProvider } from 'styled-components';
 import { styledTheme } from './components/global/designSystem/ThemeExport';
+
 import AppContext from './components/global/AppContext';
+import clientState from './components/user/state/ClientMain';
+import adminState from './components/admin/state/AdminMain';
 
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
@@ -28,7 +31,8 @@ let currentTheme: string;
 
 function AppWrapper() {
   const appHook = useState({
-    theme: 'base',
+    ...clientState,
+    ...adminState,
   });
 
   currentTheme = appHook[0].theme;
