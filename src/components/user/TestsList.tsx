@@ -1,13 +1,13 @@
 /* eslint-disable import/no-unresolved */
 import React, { lazy } from 'react';
 import pet, { Photo } from '@frontendmasters/pet';
-import AppContext from './AppContext';
+// import AppContext from './AppContext';
 import { navigate, RouteComponentProps } from '@reach/router';
 
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import Carousel from './carousel';
+// import Carousel from './carousel';
 import ErrorBoundary from '../global/ErrorBoundary';
 import console = require('console');
 

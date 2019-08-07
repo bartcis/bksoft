@@ -6,9 +6,10 @@ import { createGlobalStyle } from 'styled-components';
 import { ThemeProvider } from 'styled-components';
 import { styledTheme } from './components/global/designSystem/ThemeExport';
 
-import AppContext from './components/global/AppContext';
+import AppContext from './components/AppContext';
 import clientState from './components/user/state/ClientMain';
 import adminState from './components/admin/state/AdminMain';
+import globalState from './components/global/state/GlobalMain';
 
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
@@ -16,7 +17,6 @@ import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import App from './components/App';
-import console = require('console');
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000',
@@ -33,6 +33,7 @@ function AppWrapper() {
   const appHook = useState({
     ...clientState,
     ...adminState,
+    ...globalState,
   });
 
   currentTheme = appHook[0].theme;

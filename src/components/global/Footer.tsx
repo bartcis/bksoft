@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import AppContext from './AppContext';
+import AppContext from '../AppContext';
 
 let currentTheme: string;
 

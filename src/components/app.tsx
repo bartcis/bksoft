@@ -4,7 +4,7 @@ import { Router } from '@reach/router';
 
 import StartPage from './user/StartPage';
 import PageLayout from './global/styled/PageLayout';
-import SideMenu from './global/SideMenu';
+import UserMenu from './user/UserMenu';
 import ContentLayout from './global/styled/ContentLayout';
 import Header from './global/Header';
 import Footer from './global/Footer';
@@ -20,8 +20,8 @@ const App = () => {
     <PageLayout>
       <Suspense fallback={<h1>loading route...</h1>}>
         <Router primary={false}>
-          <SideMenu path={'/'} type="main" />
-          {/* <SideMenu path={['test/:name']} type="test" /> */}
+          <UserMenu path="/*" />
+          {/* <TestMenu path="test/*" /> */}
         </Router>
       </Suspense>
       <ContentLayout>

@@ -9,13 +9,14 @@ import { Link, RouteComponentProps, Router } from '@reach/router';
 import { Photo } from '@frontendmasters/pet';
 
 import ContentLayout from '../global/styled/ContentLayout';
-import AppContext from '../global/AppContext';
-import StyledSideMenu from '../global/SideMenu';
+import AppContext from '../AppContext';
+import StyledSideMenu from './UserMenu';
 import PageLayout from '../global/styled/PageLayout';
 import Header from '../global/Header';
 import Footer from '../global/Footer';
 import TestList from './TestsList';
 import About from './About';
+import console = require('console');
 
 // const About = lazy(() => import('./About'));
 
@@ -29,33 +30,12 @@ interface IProps {
 }
 
 const StartPage: FunctionComponent<RouteComponentProps> = () => {
-  const [theme, setTheme] = useContext(AppContext);
+  const [menuTitle, setTitle] = useContext(AppContext);
 
-  const toRender = {
-    title: 'Strona Główna',
-    menu: [
-      {
-        label: 'Start',
-        link: '/start',
-      },
-      {
-        label: 'O aplikacji',
-        link: '/about',
-      },
-      {
-        label: 'Wesprzyj',
-        link: '/give-support',
-      },
-      {
-        label: 'App Log',
-        link: '/versions',
-      },
-    ],
-  };
-
-  useEffect(() => {
-    setTheme({ theme: 'base' });
-  }, [setTheme]);
+  console.log(menuTitle, setTitle);
+  // useEffect(() => {
+  //   setTitle({ menuTitle: 'Start' });
+  // }, [setTitle]);
 
   return <h1>Wybierz test psychologiczny:</h1>;
 };
