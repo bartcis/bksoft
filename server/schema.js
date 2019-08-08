@@ -1,23 +1,14 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
-  type SingleMenuList {
-    label: String
-    link: String
-  }
-
-  type SingleMenu {
-    title: String
-    slug: String
-    list: [SingleMenuList]
-  }
-
-  type Menu {
-    main: SingleMenu
+  type TestList {
+    name: String
+    icon: String
+    id: String
   }
 
   type Query {
-    menusQuery: [Menu]
+    testListQuery: [TestList]
   }
 `;
 

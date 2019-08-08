@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import AppContext from '../AppContext';
+import ThemeContext from '../context/ThemeContext';
 
 let currentTheme: string;
 
 const Footer = () => {
-  const [theme] = useContext(AppContext);
+  const [theme] = useContext(ThemeContext);
 
-  currentTheme = theme.theme;
+  currentTheme = theme;
 
   return (
     <Foot>

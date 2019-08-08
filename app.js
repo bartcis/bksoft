@@ -1,15 +1,14 @@
 const { ApolloServer } = require('apollo-server');
 
-// const api = require('./server/api');
-const menus = require('./server/api');
+const testListsApi = require('./server/testListApi');
 
 const typeDefs = require('./server/schema');
 
-console.log(menus);
+console.log(testListsApi);
 
 const resolvers = {
   Query: {
-    menusQuery: () => menus,
+    testListQuery: () => testListsApi,
   },
 };
 

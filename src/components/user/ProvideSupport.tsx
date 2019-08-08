@@ -5,18 +5,24 @@ import React, {
   Suspense,
 } from 'react';
 import { Link, RouteComponentProps, Router } from '@reach/router';
-import { Photo } from '@frontendmasters/pet';
+
+import MenuTitleContext from '../context/MenuTitleContext';
 
 interface IProps {
   name: string;
   animal: string;
   breed: string;
-  media: Array<Photo>;
   location: string;
   id: number;
 }
 
 const ProvideSupport: FunctionComponent<RouteComponentProps> = () => {
+  const [title, setTitle] = useContext(MenuTitleContext);
+
+  useEffect(() => {
+    setTitle('Wesprzyj');
+  }, [setTitle]);
+
   return <h1>Support</h1>;
 };
 

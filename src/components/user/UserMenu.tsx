@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from '@reach/router';
-import AppContext from '../AppContext';
-import console = require('console');
+
+import ThemeContext from '../context/ThemeContext';
+import MenuTitleContext from '../context/MenuTitleContext';
 
 let currentTheme: string;
 
@@ -11,7 +12,8 @@ interface IProps {
 }
 
 const UserMenu = (props: IProps) => {
-  const [{ theme, menuTitle }] = useContext(AppContext);
+  const [theme] = useContext(ThemeContext);
+  const [menuTitle] = useContext(MenuTitleContext);
 
   currentTheme = theme;
 
@@ -37,7 +39,7 @@ const UserMenu = (props: IProps) => {
           </li>
           <li>
             <StyledLink to="/history">
-              <h3>App Log</h3>
+              <h3>Historia</h3>
             </StyledLink>
           </li>
         </ul>

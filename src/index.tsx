@@ -6,10 +6,8 @@ import { createGlobalStyle } from 'styled-components';
 import { ThemeProvider } from 'styled-components';
 import { styledTheme } from './components/global/designSystem/ThemeExport';
 
-import AppContext from './components/AppContext';
-import clientState from './components/user/state/ClientMain';
-import adminState from './components/admin/state/AdminMain';
-import globalState from './components/global/state/GlobalMain';
+import ThemeContext from './components/context/ThemeContext';
+import MenuTitleContext from './components/context/MenuTitleContext';
 
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
@@ -30,22 +28,21 @@ const client = new ApolloClient({
 let currentTheme: string;
 
 function AppWrapper() {
-  const appHook = useState({
-    ...clientState,
-    ...adminState,
-    ...globalState,
-  });
+  const themeHook = useState('base');
+  const menuTitleHook = useState('Start');
 
-  currentTheme = appHook[0].theme;
+  currentTheme = themeHook[0];
 
   return (
     <React.StrictMode>
       <ApolloProvider client={client}>
         <ThemeProvider theme={styledTheme}>
-          <AppContext.Provider value={appHook}>
-            <GlobalStyle />
-            <App />
-          </AppContext.Provider>
+          <ThemeContext.Provider value={themeHook}>
+            <MenuTitleContext.Provider value={menuTitleHook}>
+              <GlobalStyle />
+              <App />
+            </MenuTitleContext.Provider>
+          </ThemeContext.Provider>
         </ThemeProvider>
       </ApolloProvider>
     </React.StrictMode>
@@ -84,50 +81,50 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-    h1 {
-      color: ${() => styledTheme.styledColors[currentTheme].mainText};
-      font-family: 'nunito_sansblack';
-      font-size: 1.5rem;
-      margin: 1rem 0;
-    }
+  h1 {
+    color: ${() => styledTheme.styledColors[currentTheme].mainText};
+    font-family: 'nunito_sansblack';
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
 
-    h2 {
-      color: ${() => styledTheme.styledColors[currentTheme].mainText};
-      font-family: 'nunito_sansblack';
-      font-size: 1.25rem;
-    }
+  h2 {
+    color: ${() => styledTheme.styledColors[currentTheme].mainText};
+    font-family: 'nunito_sansblack';
+    font-size: 1.25rem;
+  }
 
-    h3 {
-      font-family: 'nunito_sansblack';
-      text-transform: uppercase;
-      font-size: 1rem;
-    }
+  h3 {
+    font-family: 'nunito_sansblack';
+    text-transform: uppercase;
+    font-size: 1rem;
+  }
 
-    h4 {
-        color: yellow;
-    }
+  h4 {
+      color: yellow;
+  }
 
-    h5 {
-      color: ${() => styledTheme.styledColors[currentTheme].residualText};
-      font-family: 'nunito_sansextralight';
-    }
+  h5 {
+    color: ${() => styledTheme.styledColors[currentTheme].residualText};
+    font-family: 'nunito_sansextralight';
+  }
 
-    p {
-      color: ${() => styledTheme.styledColors[currentTheme].mainText};
-      font-family: 'nunito_sansregular';
-    }
+  p {
+    color: ${() => styledTheme.styledColors[currentTheme].mainText};
+    font-family: 'nunito_sansregular';
+  }
 
-    .link {
-      text-decoration: none;
-      color: ${() => styledTheme.styledColors[currentTheme].link};
-      transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
-      &:hover {
-        color: ${() => styledTheme.styledColors[currentTheme].hoverState};
-      }
-      &--footer {
-        margin: 0 .5rem;
-      }
+  .link {
+    text-decoration: none;
+    color: ${() => styledTheme.styledColors[currentTheme].link};
+    transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    &:hover {
+      color: ${() => styledTheme.styledColors[currentTheme].hoverState};
     }
+    &--footer {
+      margin: 0 .5rem;
+    }
+  }
 `;
 
 render(<AppWrapper />, document.getElementById('root'));

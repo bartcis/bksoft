@@ -6,38 +6,48 @@ import React, {
   lazy,
 } from 'react';
 import { Link, RouteComponentProps, Router } from '@reach/router';
-import { Photo } from '@frontendmasters/pet';
+import styled from 'styled-components';
 
-import ContentLayout from '../global/styled/ContentLayout';
-import AppContext from '../AppContext';
-import StyledSideMenu from './UserMenu';
-import PageLayout from '../global/styled/PageLayout';
-import Header from '../global/Header';
-import Footer from '../global/Footer';
-import TestList from './TestsList';
-import About from './About';
-import console = require('console');
+import MenuTitleContext from '../context/MenuTitleContext';
 
-// const About = lazy(() => import('./About'));
-
-interface IProps {
-  name: string;
-  animal: string;
-  breed: string;
-  media: Array<Photo>;
-  location: string;
-  id: number;
-}
+import { Query } from 'react-apollo';
+import testsQuery from '../queries/testsListQuery';
 
 const StartPage: FunctionComponent<RouteComponentProps> = () => {
-  const [menuTitle, setTitle] = useContext(AppContext);
+  const [title, setTitle] = useContext(MenuTitleContext);
 
-  console.log(menuTitle, setTitle);
-  // useEffect(() => {
-  //   setTitle({ menuTitle: 'Start' });
-  // }, [setTitle]);
+  useEffect(() => {
+    setTitle('Start');
+  }, [setTitle]);
 
-  return <h1>Wybierz test psychologiczny:</h1>;
+  return (
+    <Query query={testsQuery}>
+      {({ loading, error, data }: any) => {
+        if (loading) return `Loading...`;
+        if (error) return `Error`;
+
+        const tests: [{ id: string; name: string; icon: string }] =
+          data.testListQuery;
+
+        return (
+          <Container>
+            <h1>Wybierz test osobowości:</h1>
+            {tests.map(test => (
+              <div key={test.id}>
+                {test.name}
+                {test.icon}
+                {test.id}
+              </div>
+            ))}
+          </Container>
+        );
+      }}
+    </Query>
+  );
 };
 
 export default StartPage;
+
+const Container = styled.section`
+  padding: 1rem;
+`;
