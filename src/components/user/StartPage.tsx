@@ -32,17 +32,19 @@ const StartPage: FunctionComponent<RouteComponentProps> = () => {
           data.testListQuery;
 
         return (
-          <Container>
-            <h1>Wybierz test osobowości:</h1>
-            {tests.map(test => (
-              <TestGridElement
-                key={test.id}
-                name={test.name}
-                icon={test.icon}
-                id={test.id}
-              />
-            ))}
-          </Container>
+          <>
+            <h2>Wybierz test osobowości:</h2>
+            <Container>
+              {tests.map(test => (
+                <TestGridElement
+                  key={test.id}
+                  name={test.name}
+                  icon={test.icon}
+                  id={test.id}
+                />
+              ))}
+            </Container>
+          </>
         );
       }}
     </Query>
@@ -52,7 +54,6 @@ const StartPage: FunctionComponent<RouteComponentProps> = () => {
 export default StartPage;
 
 const Container = styled.section`
-  padding: 1rem;
   display: flex;
   flex-wrap: wrap;
   width: 100%;

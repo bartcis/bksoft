@@ -11,7 +11,7 @@ interface IProps {
   path: string;
 }
 
-const UserMenu = (props: IProps) => {
+const TestMenu = (props: IProps) => {
   const [theme] = useContext(ThemeContext);
   const [menuTitle] = useContext(MenuTitleContext);
 
@@ -25,37 +25,37 @@ const UserMenu = (props: IProps) => {
           <li>
             <StyledLink to="/">
               <Image
-                src="/images/icons/icon-home.svg"
+                src="/images/icons/icon-start-tets.svg"
                 alt="MyPer - testy psychologiczne - Strona Główna."
               />
-              <h3>Start</h3>
+              <h3>Zacznij test</h3>
             </StyledLink>
           </li>
           <li>
             <StyledLink to="/about">
               <Image
-                src="/images/icons/icon-about.svg"
+                src="/images/icons/icon-theory.svg"
                 alt="MyPer - testy psychologiczne - O aplikacji."
               />
-              <h3>O aplikacji</h3>
+              <h3>Teoria do testu</h3>
             </StyledLink>
           </li>
           <li>
             <StyledLink to="/provide-support">
               <Image
-                src="/images/icons/icon-support.svg"
+                src="/images/icons/icon-results.svg"
                 alt="MyPer - testy psychologiczne - Wesprzyj projekt."
               />
-              <h3>Wesprzyj</h3>
+              <h3>Wyniki w Polsce</h3>
             </StyledLink>
           </li>
           <li>
-            <StyledLink to="/history">
+            <StyledLink to="/">
               <Image
-                src="/images/icons/icon-history.svg"
-                alt="MyPer - testy psychologiczne - Historia aplikacji."
+                src="/images/icons/icon-back.svg"
+                alt="MyPer - testy psychologiczne - Wesprzyj projekt."
               />
-              <h3>Historia</h3>
+              <h3>Powrót</h3>
             </StyledLink>
           </li>
         </ul>
@@ -64,7 +64,7 @@ const UserMenu = (props: IProps) => {
   );
 };
 
-export default UserMenu;
+export default TestMenu;
 
 const Image = styled.img`
   width: 30px;

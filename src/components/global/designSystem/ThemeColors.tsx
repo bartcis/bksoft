@@ -1,6 +1,6 @@
 export const styledColors: ITypes = {
   base: {
-    body: '#f6f6f6',
+    body: '#f1f4fb',
     background: 'white',
     backgroundTwo: '#91e182',
     border: 'transparent',
@@ -10,7 +10,7 @@ export const styledColors: ITypes = {
     residualText: '#c2c2c2',
     link: '#1f7470',
     hoverState: '#5fba68',
-    shadow: '',
+    shadow: '#d0d0d0',
   },
   graves: {
     body: 'pink',

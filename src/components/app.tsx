@@ -3,8 +3,10 @@ import React, { lazy, Suspense } from 'react';
 import { Router } from '@reach/router';
 
 import StartPage from './user/StartPage';
+import StartTest from './user/StartTest';
 import PageLayout from './global/styled/PageLayout';
 import UserMenu from './user/UserMenu';
+import TestMenu from './user/TestMenu';
 import ContentLayout from './global/styled/ContentLayout';
 import Header from './global/Header';
 import Footer from './global/Footer';
@@ -21,7 +23,7 @@ const App = () => {
       <Suspense fallback={<h1>loading route...</h1>}>
         <Router primary={false}>
           <UserMenu path="/*" />
-          {/* <TestMenu path="test/*" /> */}
+          <TestMenu path="test/*" />
         </Router>
       </Suspense>
       <ContentLayout>
@@ -33,6 +35,7 @@ const App = () => {
               <About path="about" />
               <ProvideSupport path="provide-support" />
               <AppLog path="history" />
+              <StartTest path="test/:id" />
             </Router>
           </Suspense>
         </Content>
@@ -53,4 +56,6 @@ export default App;
 
 const Content = styled.section`
   padding: 4rem 1rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
 `;

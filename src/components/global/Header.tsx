@@ -33,4 +33,6 @@ const Head = styled.header`
   justify-content: space-between;
   align-items: center;
   transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  box-shadow: ${({ theme }) => theme.styledColors[currentTheme].shadow} 0px 5px
+    5px 0px;
 `;

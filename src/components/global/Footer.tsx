@@ -36,6 +36,9 @@ const Foot = styled.footer`
   padding: 0 0.5rem;
   justify-content: flex-end;
   align-items: center;
+  box-shadow: ${({ theme }) => theme.styledColors[currentTheme].shadow} 0px 0px
+    10px 0px;
+
   h5 {
     margin: 0;
   }

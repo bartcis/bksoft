@@ -34,10 +34,10 @@ const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.styledColors.base.background};
   border-radius: 5px;
   text-align: center;
-  padding: 1rem;
+  padding: 1.5rem 1rem 1rem;
   margin: 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   box-shadow: #d0d0d0 0px 5px 10px 0px;
@@ -52,5 +52,5 @@ const Test = styled(Link)`
 `;
 
 const Image = styled.img`
-  width: 50px;
+  width: 80px;
 `;

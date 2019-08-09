@@ -5,7 +5,7 @@ const PageLayout = styled.article`
   height: 100vh;
   width: 100%;
   section {
-    width: calc(100% - 200px);
+    width: 100%;
   }
 `;
 
