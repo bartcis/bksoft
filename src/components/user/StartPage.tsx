@@ -13,6 +13,8 @@ import MenuTitleContext from '../context/MenuTitleContext';
 import { Query } from 'react-apollo';
 import testsQuery from '../queries/testsListQuery';
 
+import TestGridElement from './TestGridElement';
+
 const StartPage: FunctionComponent<RouteComponentProps> = () => {
   const [title, setTitle] = useContext(MenuTitleContext);
 
@@ -33,11 +35,12 @@ const StartPage: FunctionComponent<RouteComponentProps> = () => {
           <Container>
             <h1>Wybierz test osobowości:</h1>
             {tests.map(test => (
-              <div key={test.id}>
-                {test.name}
-                {test.icon}
-                {test.id}
-              </div>
+              <TestGridElement
+                key={test.id}
+                name={test.name}
+                icon={test.icon}
+                id={test.id}
+              />
             ))}
           </Container>
         );
@@ -50,4 +53,7 @@ export default StartPage;
 
 const Container = styled.section`
   padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 `;
