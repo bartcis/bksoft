@@ -1,13 +1,17 @@
 const testListsApi = [
   {
-    name: `Poziomy Świadomości Graves'a`,
+    nameFull: `Poziomy Świadomości Graves'a`,
+    nameShort: `Poziomy Graves'a`,
     icon: '/images/icons/icon-graves-levels.svg',
     id: 'graves',
+    theme: 'base',
   },
   {
-    name: `Introwertyk vs Ekstrawertyk`,
+    nameFull: `Introwertyzm i Ekstrawertyzm`,
+    nameShort: `Intro vs Ekstra`,
     icon: '/images/icons/icon-graves-levels.svg',
     id: 'intro',
+    theme: 'graves',
   },
 ];
 

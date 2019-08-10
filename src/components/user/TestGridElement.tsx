@@ -5,14 +5,12 @@ import React, {
   Suspense,
 } from 'react';
 import { Link, RouteComponentProps, Router } from '@reach/router';
-import SearchParams from '../global/search';
 import styled from 'styled-components';
 
 interface IProps {
   name: string;
   icon: string;
   id: string;
-  key: string;
 }
 
 const TestGridElement = ({ id, icon, name }: IProps) => {

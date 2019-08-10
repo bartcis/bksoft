@@ -21,8 +21,6 @@ interface IProps {
 }
 
 const DefaultMenu = ({ content, type, title }: IProps) => {
-  console.log(type);
-
   const [theme] = useContext(ThemeContext);
   const [menuTitle, setTitle] = useContext(MenuTitleContext);
   const [active, setActive] = useState('start');
@@ -30,9 +28,9 @@ const DefaultMenu = ({ content, type, title }: IProps) => {
   currentTheme = theme;
 
   useEffect(() => {
-    setActive(type);
     setTitle(title);
-  }, [setActive]);
+    setActive(type);
+  }, [setActive, setTitle]);
 
   return (
     <Menu>
@@ -40,7 +38,7 @@ const DefaultMenu = ({ content, type, title }: IProps) => {
         <h2>{menuTitle}</h2>
         <ul>
           {content.map(element => (
-            <li onClick={() => setActive(element.slug)}>
+            <li onClick={() => setActive(element.slug)} key={element.slug}>
               <MenuLink
                 status={active === element.slug ? 'active' : ''}
                 link={element.link}

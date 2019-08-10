@@ -1,53 +1,53 @@
-import React, {
-  FunctionComponent,
-  useContext,
-  useEffect,
-  Suspense,
-  lazy,
-} from 'react';
-import { Link, RouteComponentProps, Router } from '@reach/router';
+import React, { FunctionComponent, useContext, useEffect } from 'react';
+import { RouteComponentProps } from '@reach/router';
 import styled from 'styled-components';
 
 import MenuTitleContext from '../context/MenuTitleContext';
+import CurrentTestContext from '../context/CurrentTestContext';
 
-import { Query } from 'react-apollo';
 import testsQuery from '../queries/testsListQuery';
+import { useQuery } from 'graphql-hooks';
 
 import TestGridElement from './TestGridElement';
+import ThemeContext from '../context/ThemeContext';
 
-const StartPage: FunctionComponent<RouteComponentProps> = () => {
+interface IProps {
+  path: string;
+}
+
+const StartPage = (props: IProps) => {
   const [title, setTitle] = useContext(MenuTitleContext);
+  const [test, setTest] = useContext(CurrentTestContext);
+  const [theme, setTheme] = useContext(ThemeContext);
 
   useEffect(() => {
     setTitle('Start');
-  }, [setTitle]);
+    setTheme('base');
+  }, [setTitle, setTheme]);
+
+  const { loading, error, data } = useQuery(testsQuery);
+
+  if (loading) return 'loading';
+  if (error) return `Error! ${error}`;
+
+  const tests: [{ id: string; nameFull: string; icon: string }] =
+    data.testListQuery;
 
   return (
-    <Query query={testsQuery}>
-      {({ loading, error, data }: any) => {
-        if (loading) return `Loading...`;
-        if (error) return `Error`;
-
-        const tests: [{ id: string; name: string; icon: string }] =
-          data.testListQuery;
-
-        return (
-          <>
-            <h2>Wybierz test osobowości:</h2>
-            <Container>
-              {tests.map(test => (
-                <TestGridElement
-                  key={test.id}
-                  name={test.name}
-                  icon={test.icon}
-                  id={test.id}
-                />
-              ))}
-            </Container>
-          </>
-        );
-      }}
-    </Query>
+    <>
+      <h2>Wybierz test osobowości:</h2>
+      <Container>
+        {tests.map(test => (
+          <span key={test.id} onClick={() => setTest(test.id)}>
+            <TestGridElement
+              name={test.nameFull}
+              icon={test.icon}
+              id={test.id}
+            />
+          </span>
+        ))}
+      </Container>
+    </>
   );
 };
 

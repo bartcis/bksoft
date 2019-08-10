@@ -1,37 +1,45 @@
-import React from 'react';
+import React, { FunctionComponent, useContext, useEffect } from 'react';
+import { useQuery } from 'graphql-hooks';
 
 import DefaultMenu from '../global/DefaultMenu';
-import { getArgumentValues } from 'graphql/execution/values';
+import singleTestShort from '../queries/singleTestShort';
+import CurrentTestContext from '../context/CurrentTestContext';
+import ThemeContext from '../context/ThemeContext';
 
-interface IProps {
-  path: string;
-}
+const TestMenu = () => {
+  const [test] = useContext(CurrentTestContext);
+  const [theme, setTheme] = useContext(ThemeContext);
+  const { loading, error, data } = useQuery(singleTestShort, {
+    variables: {
+      id: test,
+    },
+  });
 
-const TestMenu = (props: IProps) => {
-  const dataAPI = {
-    name: 'Poziomy Gravesa',
-    id: 'graves',
-  };
+  if (loading) return null;
+  if (error) return `Error! ${error}`;
+
+  setTheme(data.singleTestShort.theme);
+
   const menuContent = [
     {
       title: 'Rozpocznij test',
       slug: 'test',
       icon: '/images/icons/icon-start-test.svg',
-      link: `/test/${dataAPI.id}`,
+      link: `/test/${data.singleTestShort.id}`,
       alt: 'Rozpocznij test',
     },
     {
       title: 'Teoria do testu',
       slug: 'theory',
       icon: '/images/icons/icon-theory.svg',
-      link: `/test/${dataAPI.id}/theory`,
+      link: `/test/${data.singleTestShort.id}/theory`,
       alt: 'O teorii jakiejś tam',
     },
     {
       title: 'Wyniki w Polsce',
       slug: 'results',
       icon: '/images/icons/icon-results.svg',
-      link: `/test/${dataAPI.id}/results`,
+      link: `/test/${data.singleTestShort.id}/results`,
       alt: 'Wyniki testu jakiegos tam w Polsce',
     },
     {
@@ -43,7 +51,13 @@ const TestMenu = (props: IProps) => {
     },
   ];
 
-  return <DefaultMenu content={menuContent} type="test" title={dataAPI.name} />;
+  return (
+    <DefaultMenu
+      content={menuContent}
+      type="test"
+      title={data.singleTestShort.nameShort}
+    />
+  );
 };
 
 export default TestMenu;

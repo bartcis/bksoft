@@ -2,13 +2,16 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
   type TestList {
-    name: String
-    icon: String
-    id: String
+    nameFull: String!
+    nameShort: String!
+    icon: String!
+    id: String!
+    theme: String!
   }
 
   type Query {
     testListQuery: [TestList]
+    singleTestShort(id: String!): TestList
   }
 `;
 

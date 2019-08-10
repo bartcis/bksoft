@@ -3,10 +3,8 @@ import React, { lazy, Suspense } from 'react';
 import { Router } from '@reach/router';
 
 import StartPage from './user/StartPage';
-import StartTest from './user/StartTest';
 import PageLayout from './global/styled/PageLayout';
 import StartMenu from './user/StartMenu';
-import TestMenu from './user/TestMenu';
 import ContentLayout from './global/styled/ContentLayout';
 import Header from './global/Header';
 import Footer from './global/Footer';
@@ -16,6 +14,8 @@ import ErrorBoundary from './global/errorBoundary';
 const About = lazy(() => import('./user/About'));
 const ProvideSupport = lazy(() => import('./user/ProvideSupport'));
 const AppLog = lazy(() => import('./user/AppLog'));
+const StartTest = lazy(() => import('./user/StartTest'));
+const TestMenu = lazy(() => import('./user/TestMenu'));
 
 const App = () => {
   return (

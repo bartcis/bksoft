@@ -8,21 +8,16 @@ import { styledTheme } from './components/global/designSystem/ThemeExport';
 
 import ThemeContext from './components/context/ThemeContext';
 import MenuTitleContext from './components/context/MenuTitleContext';
+import CurrentTestContext from './components/context/CurrentTestContext';
 
-import { ApolloProvider } from 'react-apollo';
-import { ApolloClient } from 'apollo-client';
-import { createHttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
+import { GraphQLClient, ClientContext } from 'graphql-hooks';
+import memCache from 'graphql-hooks-memcache';
 
 import App from './components/App';
 
-const httpLink = createHttpLink({
-  uri: 'http://localhost:4000',
-});
-
-const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache(),
+const client = new GraphQLClient({
+  url: 'http://localhost:4000',
+  cache: memCache(),
 });
 
 let currentTheme: string;
@@ -30,21 +25,24 @@ let currentTheme: string;
 function AppWrapper() {
   const themeHook = useState('base');
   const menuTitleHook = useState('Start');
+  const currentTestHook = useState('');
 
   currentTheme = themeHook[0];
 
   return (
     <React.StrictMode>
-      <ApolloProvider client={client}>
+      <ClientContext.Provider value={client}>
         <ThemeProvider theme={styledTheme}>
           <ThemeContext.Provider value={themeHook}>
             <MenuTitleContext.Provider value={menuTitleHook}>
-              <GlobalStyle />
-              <App />
+              <CurrentTestContext.Provider value={currentTestHook}>
+                <GlobalStyle />
+                <App />
+              </CurrentTestContext.Provider>
             </MenuTitleContext.Provider>
           </ThemeContext.Provider>
         </ThemeProvider>
-      </ApolloProvider>
+      </ClientContext.Provider>
     </React.StrictMode>
   );
 }

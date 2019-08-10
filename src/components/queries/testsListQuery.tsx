@@ -1,9 +1,7 @@
-import gql from 'graphql-tag';
-
-const testsQuery = gql`
-  {
+const testsQuery = `
+  query {
     testListQuery {
-      name
+      nameFull
       icon
       id
     }
