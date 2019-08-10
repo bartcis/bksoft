@@ -18,14 +18,6 @@ interface IProps {
 }
 
 const StartTest: FunctionComponent<RouteComponentProps> = props => {
-  const [title, setTitle] = useContext(MenuTitleContext);
-
-  console.log(props);
-
-  useEffect(() => {
-    setTitle('O Aplikacji');
-  }, [setTitle]);
-
   return <h1>Test</h1>;
 };
 

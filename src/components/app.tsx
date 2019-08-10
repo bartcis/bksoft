@@ -5,7 +5,7 @@ import { Router } from '@reach/router';
 import StartPage from './user/StartPage';
 import StartTest from './user/StartTest';
 import PageLayout from './global/styled/PageLayout';
-import UserMenu from './user/UserMenu';
+import StartMenu from './user/StartMenu';
 import TestMenu from './user/TestMenu';
 import ContentLayout from './global/styled/ContentLayout';
 import Header from './global/Header';
@@ -22,7 +22,7 @@ const App = () => {
     <PageLayout>
       <Suspense fallback={<h1>loading route...</h1>}>
         <Router primary={false}>
-          <UserMenu path="/*" />
+          <StartMenu path="/*" />
           <TestMenu path="test/*" />
         </Router>
       </Suspense>

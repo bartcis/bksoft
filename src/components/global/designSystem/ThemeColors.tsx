@@ -9,6 +9,7 @@ export const styledColors: ITypes = {
     secondaryText: 'grey',
     residualText: '#c2c2c2',
     link: '#1f7470',
+    activeLink: '#685fba',
     hoverState: '#5fba68',
     shadow: '#d0d0d0',
   },
@@ -22,6 +23,7 @@ export const styledColors: ITypes = {
     secondaryText: 'grey',
     residualText: 'black',
     link: 'orange',
+    activeLink: '685fba',
     hoverState: 'grey',
     shadow: 'black',
   },
@@ -38,6 +40,7 @@ interface ITypes {
     secondaryText: string;
     residualText: string;
     link: string;
+    activeLink: string;
     hoverState: string;
     shadow: string;
   };
@@ -51,6 +54,7 @@ interface ITypes {
     secondaryText: string;
     residualText: string;
     link: string;
+    activeLink: string;
     hoverState: string;
     shadow: string;
   };
