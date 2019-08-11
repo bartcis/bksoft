@@ -1,5 +1,4 @@
-import React, { FunctionComponent, useContext, useEffect } from 'react';
-import { RouteComponentProps } from '@reach/router';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 
 import MenuTitleContext from '../context/MenuTitleContext';
@@ -10,6 +9,7 @@ import { useQuery } from 'graphql-hooks';
 
 import TestGridElement from './TestGridElement';
 import ThemeContext from '../context/ThemeContext';
+import Loader from '../global/Loader';
 
 interface IProps {
   path: string;
@@ -27,7 +27,7 @@ const StartPage = (props: IProps) => {
 
   const { loading, error, data } = useQuery(testsQuery);
 
-  if (loading) return 'loading';
+  if (loading) return <Loader />;
   if (error) return `Error! ${error}`;
 
   const tests: [{ id: string; nameFull: string; icon: string }] =

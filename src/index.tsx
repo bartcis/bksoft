@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 
 import { createGlobalStyle } from 'styled-components';
@@ -14,6 +14,12 @@ import { GraphQLClient, ClientContext } from 'graphql-hooks';
 import memCache from 'graphql-hooks-memcache';
 
 import App from './components/App';
+import Loader from './components/global/Loader';
+
+interface ILoader {
+  nunitoBlack: string;
+  nunitoBlack2: string;
+}
 
 const client = new GraphQLClient({
   url: 'http://localhost:4000',
@@ -26,8 +32,15 @@ function AppWrapper() {
   const themeHook = useState('base');
   const menuTitleHook = useState('Start');
   const currentTestHook = useState('');
+  const [loader, setLoader] = useState(true);
 
   currentTheme = themeHook[0];
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(false);
+    }, 500);
+  }, [setLoader]);
 
   return (
     <React.StrictMode>
@@ -38,6 +51,7 @@ function AppWrapper() {
               <CurrentTestContext.Provider value={currentTestHook}>
                 <GlobalStyle />
                 <App />
+                {loader ? <Loader /> : ''}
               </CurrentTestContext.Provider>
             </MenuTitleContext.Provider>
           </ThemeContext.Provider>
@@ -50,24 +64,24 @@ function AppWrapper() {
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'nunito_sansblack';
-    src: url('./fonts/nunitosans-black-webfont.woff2') format('woff2'),
-      url('./fonts/nunitosans-black-webfont.woff') format('woff');
+    src: url('/fonts/nunitosans-black-webfont.woff2') format('woff2'),
+      url('/fonts/nunitosans-black-webfont.woff2') format('woff');
     font-weight: normal;
     font-style: normal;
   }
 
   @font-face {
   font-family: 'nunito_sansregular';
-  src: url('./fonts/nunitosans-regular-webfont.woff2') format('woff2'),
-    url('./fonts/nunitosans-regular-webfont.woff') format('woff');
+  src: url('/fonts/nunitosans-regular-webfont.woff2') format('woff2'),
+    url('/fonts/nunitosans-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   }
 
   @font-face {
     font-family: 'nunito_sansextralight';
-    src: url('./fonts/nunitosans-extralight-webfont.woff2') format('woff2'),
-      url('./fonts/nunitosans-extralight-webfont.woff') format('woff');
+    src: url('/fonts/nunitosans-extralight-webfont.woff2') format('woff2'),
+      url('/fonts/nunitosans-extralight-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
   }

@@ -1,21 +1,24 @@
-import React, { FunctionComponent, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useQuery } from 'graphql-hooks';
 
 import DefaultMenu from '../global/DefaultMenu';
 import singleTestShort from '../queries/singleTestShort';
+import Loader from '../global/Loader';
+
 import CurrentTestContext from '../context/CurrentTestContext';
 import ThemeContext from '../context/ThemeContext';
 
 const TestMenu = () => {
+  const currentDomain = window.location.pathname.split('/')[2];
   const [test] = useContext(CurrentTestContext);
   const [theme, setTheme] = useContext(ThemeContext);
   const { loading, error, data } = useQuery(singleTestShort, {
     variables: {
-      id: test,
+      id: test || currentDomain,
     },
   });
 
-  if (loading) return null;
+  if (loading) return <Loader />;
   if (error) return `Error! ${error}`;
 
   setTheme(data.singleTestShort.theme);

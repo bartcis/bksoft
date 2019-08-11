@@ -3,6 +3,7 @@ import React, {
   useContext,
   useEffect,
   Suspense,
+  useState,
 } from 'react';
 import { Link, RouteComponentProps, Router } from '@reach/router';
 
@@ -18,6 +19,14 @@ interface IProps {
 }
 
 const StartTest: FunctionComponent<RouteComponentProps> = props => {
+  const [modal, setModal] = useState(false);
+
+  window.onbeforeunload = e => {
+    console.log('Stop this');
+
+    e.preventDefault();
+  };
+
   return <h1>Test</h1>;
 };
 

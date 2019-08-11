@@ -6,7 +6,7 @@ const Logo = () => {
   return (
     <StyledLink to="/">
       <img
-        src="./images/my-per_logo.svg"
+        src="/images/my-per_logo.svg"
         alt="MyPer - darmow aplikacja do testów osobowości"
       />
     </StyledLink>

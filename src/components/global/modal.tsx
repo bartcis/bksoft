@@ -4,7 +4,6 @@ import { createPortal } from 'react-dom';
 let modalRoot: any;
 
 const Modal: FunctionComponent = ({ children }) => {
-  // clean old instances
   const elRef = useRef(document.createElement('div'));
 
   useEffect(() => {
