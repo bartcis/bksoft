@@ -29,7 +29,7 @@ export default Footer;
 
 const Foot = styled.footer`
   background-color: ${({ theme }) =>
-    theme.styledColors[currentTheme].background};
+    theme.styledColors[currentTheme].backgroundFooter};
   display: flex;
   border-top: 1px solid
     ${({ theme }) => theme.styledColors[currentTheme].border};

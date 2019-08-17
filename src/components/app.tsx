@@ -4,7 +4,7 @@ import { Router } from '@reach/router';
 
 import StartPage from './user/StartPage';
 import PageLayout from './global/styled/PageLayout';
-import StartMenu from './user/StartMenu';
+import StartMenu from './user/MenuStart';
 import ContentLayout from './global/styled/ContentLayout';
 import Header from './global/Header';
 import Footer from './global/Footer';
@@ -13,9 +13,9 @@ import ErrorBoundary from './global/errorBoundary';
 
 const About = lazy(() => import('./user/About'));
 const ProvideSupport = lazy(() => import('./user/ProvideSupport'));
-const AppLog = lazy(() => import('./user/AppLog'));
+const Authors = lazy(() => import('./user/Authors'));
 const StartTest = lazy(() => import('./user/StartTest'));
-const TestMenu = lazy(() => import('./user/TestMenu'));
+const TestMenu = lazy(() => import('./user/MenuTest'));
 
 const App = () => {
   return (
@@ -34,7 +34,7 @@ const App = () => {
               <StartPage path="/" />
               <About path="about" />
               <ProvideSupport path="provide-support" />
-              <AppLog path="history" />
+              <Authors path="authors" />
               <StartTest path="test/:id" />
             </Router>
           </Suspense>

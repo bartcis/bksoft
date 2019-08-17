@@ -1,61 +1,65 @@
 export const styledColors: ITypes = {
   base: {
-    body: '#f1f4fb',
-    background: 'white',
-    backgroundTwo: '#91e182',
-    border: 'transparent',
-    borderTwo: 'white',
-    mainText: '#141414',
-    secondaryText: 'grey',
-    residualText: '#c2c2c2',
-    link: '#1f7470',
-    activeLink: '#685fba',
-    hoverState: '#5fba68',
-    shadow: '#d0d0d0',
+    leadColorDark: '#0295ff',
+    leadColorMid: '#58bdfc',
+    leadColorLight: '#a2e0f9',
+    backgroundBody: '#fafbfd',
+    backgroundHeader: '#fff',
+    backgroundFooter: '#fff',
+    backgroundSide: '#fff',
+    unactive: '#a6b5c6',
+    border: '#eaeef1',
+    shadow: '#dddddd',
+    font: '#141414',
+    contrast1: '#80e30e',
+    contrast2: '#fdc935',
   },
   graves: {
-    body: 'pink',
-    background: 'red',
-    backgroundTwo: 'red',
-    border: 'red',
-    borderTwo: 'green',
-    mainText: 'yellow',
-    secondaryText: 'grey',
-    residualText: 'black',
-    link: 'orange',
-    activeLink: '685fba',
-    hoverState: 'grey',
-    shadow: 'black',
+    leadColorDark: 'pink',
+    leadColorMid: 'red',
+    leadColorLight: 'red',
+    backgroundBody: 'orange',
+    backgroundHeader: 'purple',
+    backgroundFooter: 'grey',
+    backgroundSide: 'yellow',
+    unactive: 'green',
+    border: 'yellow',
+    shadow: 'grey',
+    font: 'black',
+    contrast1: 'orange',
+    contrast2: '685fba',
   },
 };
 
 interface ITypes {
   base: {
-    body: string;
-    background: string;
-    backgroundTwo: string;
+    leadColorDark: string;
+    leadColorMid: string;
+    leadColorLight: string;
+    backgroundBody: string;
+    backgroundHeader: string;
+    backgroundFooter: string;
+    backgroundSide: string;
+    unactive: string;
     border: string;
-    borderTwo: string;
-    mainText: string;
-    secondaryText: string;
-    residualText: string;
-    link: string;
-    activeLink: string;
-    hoverState: string;
     shadow: string;
+    font: string;
+    contrast1: string;
+    contrast2: string;
   };
   graves: {
-    body: string;
-    background: string;
-    backgroundTwo: string;
+    leadColorDark: string;
+    leadColorMid: string;
+    leadColorLight: string;
+    backgroundBody: string;
+    backgroundHeader: string;
+    backgroundFooter: string;
+    backgroundSide: string;
+    unactive: string;
     border: string;
-    borderTwo: string;
-    mainText: string;
-    secondaryText: string;
-    residualText: string;
-    link: string;
-    activeLink: string;
-    hoverState: string;
     shadow: string;
+    font: string;
+    contrast1: string;
+    contrast2: string;
   };
 }

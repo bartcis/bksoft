@@ -45,7 +45,7 @@ const Bounces = styled.div`
     width: 1rem;
     height: 1rem;
     margin: 3rem 0.2rem;
-    background: #9263a5;
+    background-color: #0295ff;
     border-radius: 50%;
     animation: bouncing-loader 0.6s infinite alternate;
   }

@@ -15,7 +15,7 @@ interface IProps {
   path: string;
 }
 
-const StartPage = (props: IProps) => {
+const StartPage = ({ path }: IProps) => {
   const [title, setTitle] = useContext(MenuTitleContext);
   const [test, setTest] = useContext(CurrentTestContext);
   const [theme, setTheme] = useContext(ThemeContext);

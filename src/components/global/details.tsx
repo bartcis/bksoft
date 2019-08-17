@@ -43,7 +43,7 @@ const countiresQuery = gql`
   }
 `;
 
-const Modal = lazy(() => import('./modal'));
+const Modal = lazy(() => import('./Modal'));
 
 class Details extends React.Component<RouteComponentProps<IProps>, IState> {
   constructor(props: any) {

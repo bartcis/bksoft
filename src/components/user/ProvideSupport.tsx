@@ -17,12 +17,6 @@ interface IProps {
 }
 
 const ProvideSupport: FunctionComponent<RouteComponentProps> = () => {
-  const [title, setTitle] = useContext(MenuTitleContext);
-
-  useEffect(() => {
-    setTitle('Wesprzyj');
-  }, [setTitle]);
-
   return <h1>Support</h1>;
 };
 

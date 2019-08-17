@@ -17,13 +17,7 @@ interface IProps {
   id: number;
 }
 
-const AppLog: FunctionComponent<RouteComponentProps> = () => {
-  const [title, setTitle] = useContext(MenuTitleContext);
-
-  useEffect(() => {
-    setTitle('Historia');
-  }, [setTitle]);
-
+const Authors: FunctionComponent<RouteComponentProps> = () => {
   return (
     <div>
       <h1>ABC</h1>
@@ -34,4 +28,4 @@ const AppLog: FunctionComponent<RouteComponentProps> = () => {
   );
 };
 
-export default AppLog;
+export default Authors;

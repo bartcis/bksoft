@@ -8,7 +8,6 @@ import React, {
 import { Link, RouteComponentProps, Router } from '@reach/router';
 
 import MenuTitleContext from '../context/MenuTitleContext';
-import console = require('console');
 
 interface IProps {
   name: string;

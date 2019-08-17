@@ -89,19 +89,20 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background-color: ${() => styledTheme.styledColors[currentTheme].body};
+    background-color: ${() =>
+      styledTheme.styledColors[currentTheme].backgroundBody};
     box-sizing: border-box;
   }
 
   h1 {
-    color: ${() => styledTheme.styledColors[currentTheme].mainText};
+    color: ${() => styledTheme.styledColors[currentTheme].font};
     font-family: 'nunito_sansblack';
     font-size: 1.5rem;
     margin: 1rem 0;
   }
 
   h2 {
-    color: ${() => styledTheme.styledColors[currentTheme].mainText};
+    color: ${() => styledTheme.styledColors[currentTheme].font};
     font-family: 'nunito_sansblack';
     font-size: 1.25rem;
   }
@@ -122,16 +123,16 @@ const GlobalStyle = createGlobalStyle`
   }
 
   p {
-    color: ${() => styledTheme.styledColors[currentTheme].mainText};
+    color: ${() => styledTheme.styledColors[currentTheme].font};
     font-family: 'nunito_sansregular';
   }
 
   .link {
     text-decoration: none;
-    color: ${() => styledTheme.styledColors[currentTheme].link};
+    color: ${() => styledTheme.styledColors[currentTheme].leadColorMid};
     transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
     &:hover {
-      color: ${() => styledTheme.styledColors[currentTheme].hoverState};
+      color: ${() => styledTheme.styledColors[currentTheme].contrast1};
     }
     &--footer {
       margin: 0 .5rem;
