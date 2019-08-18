@@ -10,6 +10,7 @@ import { useQuery } from 'graphql-hooks';
 import TestGridElement from './TestGridElement';
 import ThemeContext from '../context/ThemeContext';
 import Loader from '../global/Loader';
+import console = require('console');
 
 interface IProps {
   path: string;
@@ -30,6 +31,8 @@ const StartPage = ({ path }: IProps) => {
   if (loading) return <Loader />;
   if (error) return `Error! ${error}`;
 
+  console.log(data);
+
   const tests: [{ id: string; nameFull: string; icon: string }] =
     data.testListQuery;
 
@@ -38,7 +41,10 @@ const StartPage = ({ path }: IProps) => {
       <h2>Wybierz test osobowości:</h2>
       <Container>
         {tests.map(test => (
-          <span key={test.id} onClick={() => setTest(test.id)}>
+          <span
+            key={test.id}
+            onClick={() => setTest({ id: test.id, name: test.nameFull })}
+          >
             <TestGridElement
               name={test.nameFull}
               icon={test.icon}

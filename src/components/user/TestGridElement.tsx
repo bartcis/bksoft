@@ -18,7 +18,7 @@ const TestGridElement = ({ id, icon, name }: IProps) => {
     <Test to={`test/${id}`}>
       <Wrapper>
         <Image src={icon} alt={`${name}- darmowy test online`} />
-        <h2>{name}</h2>
+        <h3>{name}</h3>
       </Wrapper>
     </Test>
   );
@@ -27,15 +27,15 @@ const TestGridElement = ({ id, icon, name }: IProps) => {
 export default TestGridElement;
 
 const Wrapper = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 170px;
+  height: 150px;
   background-color: ${({ theme }) => theme.styledColors.base.background};
   border-radius: 5px;
   text-align: center;
   padding: 1.5rem 1rem 1rem;
   margin: 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   flex-direction: column;
   box-shadow: #d0d0d0 0px 5px 10px 0px;
@@ -50,5 +50,5 @@ const Test = styled(Link)`
 `;
 
 const Image = styled.img`
-  width: 80px;
+  width: 50px;
 `;

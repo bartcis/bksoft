@@ -16,11 +16,6 @@ import memCache from 'graphql-hooks-memcache';
 import App from './components/App';
 import Loader from './components/global/Loader';
 
-interface ILoader {
-  nunitoBlack: string;
-  nunitoBlack2: string;
-}
-
 const client = new GraphQLClient({
   url: 'http://localhost:4000',
   cache: memCache(),
@@ -109,7 +104,7 @@ const GlobalStyle = createGlobalStyle`
 
   h3 {
     font-family: 'nunito_sansblack';
-    text-transform: uppercase;
+    color: ${() => styledTheme.styledColors[currentTheme].font};
     font-size: 1rem;
   }
 

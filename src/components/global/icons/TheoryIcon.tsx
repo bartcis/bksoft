@@ -59,8 +59,8 @@ export default TheoryIcon;
 
 const StyledLink = styled(Link)`
   svg {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     margin: 0.75rem 0;
     :hover {
       path {

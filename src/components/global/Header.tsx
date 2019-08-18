@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import Logo from './icons/Logo';
 import ThemeContext from '../context/ThemeContext';
 import MenuTitleContext from '../context/MenuTitleContext';
 
@@ -9,13 +8,13 @@ let currentTheme: string;
 
 const Header = () => {
   const [theme] = useContext(ThemeContext);
-  const [menuTitle, setTitle] = useContext(MenuTitleContext);
+  const [menuTitle] = useContext(MenuTitleContext);
 
   currentTheme = theme;
 
   return (
     <Head>
-      <h2>{menuTitle}</h2>
+      <h3>{menuTitle}</h3>
     </Head>
   );
 };
@@ -25,7 +24,7 @@ export default Header;
 const Head = styled.header`
   position: fixed;
   width: 100%;
-  height: 4rem;
+  height: 3rem;
   background-color: ${({ theme }) =>
     theme.styledColors[currentTheme].backgroundHeader};
   display: flex;

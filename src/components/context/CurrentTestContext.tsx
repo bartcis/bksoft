@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-const CurrentTestContext = createContext<[any, (context: string) => void]>([
+const CurrentTestContext = createContext<[any, (context: object) => void]>([
   '',
   () => {},
 ]);

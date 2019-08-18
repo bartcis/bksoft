@@ -8,6 +8,7 @@ import React, {
 import { Link, RouteComponentProps, Router } from '@reach/router';
 
 import MenuTitleContext from '../context/MenuTitleContext';
+import CurrentTestContext from '../context/CurrentTestContext';
 
 interface IProps {
   name: string;
@@ -19,6 +20,9 @@ interface IProps {
 
 const StartTest: FunctionComponent<RouteComponentProps> = props => {
   const [modal, setModal] = useState(false);
+  const [{ name }] = useContext(CurrentTestContext);
+
+  console.log(name);
 
   window.onbeforeunload = e => {
     console.log('Stop this');
@@ -26,7 +30,7 @@ const StartTest: FunctionComponent<RouteComponentProps> = props => {
     e.preventDefault();
   };
 
-  return <h1>Test</h1>;
+  return <h2>{name}</h2>;
 };
 
 export default StartTest;

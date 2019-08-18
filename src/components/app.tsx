@@ -55,7 +55,7 @@ export default App;
 // }
 
 const Content = styled.section`
-  padding: 4rem 1rem 1rem;
+  padding: 4rem 2rem 1rem;
   width: 100%;
   box-sizing: border-box;
 `;

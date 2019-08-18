@@ -1,7 +1,7 @@
 const singleTestShort = `
   query($id: String!) {
     singleTestShort(id: $id) {
-      nameShort
+      nameFull
       id
       theme
     }

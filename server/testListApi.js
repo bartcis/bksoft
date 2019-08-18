@@ -1,6 +1,6 @@
 const testListsApi = [
   {
-    nameFull: `Poziomy Świadomości Graves'a`,
+    nameFull: `Poziomy Świadomości wg Graves'a`,
     nameShort: `Poziomy Graves'a`,
     icon: '/images/icons/icon-graves-levels.svg',
     id: 'graves',

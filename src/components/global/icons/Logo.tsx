@@ -4,15 +4,18 @@ import styled from 'styled-components';
 
 import ThemeContext from '../../context/ThemeContext';
 
+interface IProps {
+  isLoader: boolean;
+}
+
 let currentTheme: string;
 
 const Logo = () => {
   const [theme] = useContext(ThemeContext);
-
   currentTheme = theme;
 
   return (
-    <StyledLink to="/">
+    <StyledLink to="/" isLoader>
       <svg
         version="1.1"
         id="Layer_2"
@@ -83,6 +86,19 @@ const Logo = () => {
 export default Logo;
 
 const StyledLink = styled(Link)`
+  @keyframes loader {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  animation: ${(props: IProps) => (props.isLoader ? 'loader 2s infinite' : '')};
+
   svg {
     width: 45px;
     .st0 {
