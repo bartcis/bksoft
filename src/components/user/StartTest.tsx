@@ -22,8 +22,6 @@ const StartTest: FunctionComponent<RouteComponentProps> = props => {
   const [modal, setModal] = useState(false);
   const [{ name }] = useContext(CurrentTestContext);
 
-  console.log(name);
-
   window.onbeforeunload = e => {
     console.log('Stop this');
 

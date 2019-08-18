@@ -1,47 +1,48 @@
 import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { useQuery } from 'graphql-hooks';
+import { useManualQuery } from 'graphql-hooks';
 import singleTestShort from '../queries/singleTestShort';
 
 import CurrentTestContext from '../context/CurrentTestContext';
 import ThemeContext from '../context/ThemeContext';
 import MenuTitleContext from '../context/MenuTitleContext';
 
-import Loader from '../global/Loader';
 import Logo from '../global/icons/Logo';
 import StartTestIcon from '../global/icons/StartTestIcon';
 import TheoryIcon from '../global/icons/TheoryIcon';
 import ResultsIcon from '../global/icons/ResultsIcon';
 import ReturnIcon from '../global/icons/ReturnIcon';
-import console = require('console');
 
 let currentTheme: string;
 
 const TestMenu = () => {
-  const currentDomain = window.location.pathname.split('/')[2];
-  const [{ id }, setTest] = useContext(CurrentTestContext);
+  const currentUrl = window.location.pathname.split('/')[2];
+  const [test, setTest] = useContext(CurrentTestContext);
   const [theme, setTheme] = useContext(ThemeContext);
   const [menuTitle, setTitle] = useContext(MenuTitleContext);
-
+  const [fetchTest] = useManualQuery(singleTestShort);
   const [active, setActive] = useState('test');
-  const { loading, error, data } = useQuery(singleTestShort, {
-    variables: {
-      id: id || currentDomain,
-    },
-  });
+  let currentTest;
 
-  console.log(data);
-  if (loading) return <Loader />;
-  if (error) return `Error! ${error}`;
+  const backupFetch = async () => {
+    const testData = await fetchTest({
+      variables: { id: currentUrl },
+    });
+
+    const r = testData.data.singleTestShort;
+    setTest({ id: r.id, name: r.nameFull, theme: r.theme });
+    setTheme(r.theme);
+    setTitle(r.nameFull);
+  };
 
   useEffect(() => {
-    setTheme(data.singleTestShort.theme);
-    setTitle(data.singleTestShort.nameFull);
-    setTest({
-      id: data.singleTestShort.id,
-      name: data.singleTestShort.nameFull,
-    });
+    if (test) {
+      setTheme(test.theme);
+      setTitle(test.nameFull);
+    } else {
+      backupFetch();
+    }
   }, [setTitle, setTheme, setTest]);
 
   currentTheme = theme;
@@ -49,15 +50,15 @@ const TestMenu = () => {
   const menuContent = [
     {
       slug: 'test',
-      link: `/test/${data.singleTestShort.id}`,
+      link: `/test/${test.id}`,
     },
     {
       slug: 'theory',
-      link: `/test/${data.singleTestShort.id}/theory`,
+      link: `/test/${test.id}/theory`,
     },
     {
       slug: 'results',
-      link: `/test/${data.singleTestShort.id}/results`,
+      link: `/test/${test.id}/results`,
     },
     {
       slug: 'return',

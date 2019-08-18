@@ -1,21 +1,14 @@
-import React, {
-  FunctionComponent,
-  useContext,
-  useEffect,
-  Suspense,
-} from 'react';
-import { Link, RouteComponentProps, Router } from '@reach/router';
+import React from 'react';
 import styled from 'styled-components';
 
 interface IProps {
   name: string;
   icon: string;
-  id: string;
 }
 
-const TestGridElement = ({ id, icon, name }: IProps) => {
+const TestGridElement = ({ icon, name }: IProps) => {
   return (
-    <Test to={`test/${id}`}>
+    <Test>
       <Wrapper>
         <Image src={icon} alt={`${name}- darmowy test online`} />
         <h3>{name}</h3>
@@ -45,8 +38,8 @@ const Wrapper = styled.div`
   }
 `;
 
-const Test = styled(Link)`
-  text-decoration: none;
+const Test = styled.div`
+  cursor: pointer;
 `;
 
 const Image = styled.img`

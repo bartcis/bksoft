@@ -4,6 +4,7 @@ const testsQuery = `
       nameFull
       icon
       id
+      theme
     }
   }
 `;
