@@ -39,7 +39,7 @@ const TestMenu = () => {
   useEffect(() => {
     if (test) {
       setTheme(test.theme);
-      setTitle(test.nameFull);
+      setTitle(test.name);
     } else {
       backupFetch();
     }
