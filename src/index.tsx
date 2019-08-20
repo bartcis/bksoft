@@ -117,7 +117,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'nunito_sansextralight';
   }
 
-  p {
+  p, ol, ul, label {
     color: ${() => styledTheme.styledColors[currentTheme].font};
     font-family: 'nunito_sansregular';
   }

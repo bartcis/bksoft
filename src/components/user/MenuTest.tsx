@@ -23,7 +23,6 @@ const TestMenu = () => {
   const [menuTitle, setTitle] = useContext(MenuTitleContext);
   const [fetchTest] = useManualQuery(singleTestShort);
   const [active, setActive] = useState('test');
-  let currentTest;
 
   const backupFetch = async () => {
     const testData = await fetchTest({
@@ -37,13 +36,21 @@ const TestMenu = () => {
   };
 
   useEffect(() => {
+    const active = sessionStorage.getItem('active');
+    if (
+      active &&
+      (active === 'test' || active === 'theory' || active === 'results')
+    ) {
+      setActive(active);
+    }
+
     if (test) {
       setTheme(test.theme);
       setTitle(test.name);
     } else {
       backupFetch();
     }
-  }, [setTitle, setTheme, setTest]);
+  }, [setTitle, setTheme, setTest, setActive]);
 
   currentTheme = theme;
 
@@ -66,25 +73,30 @@ const TestMenu = () => {
     },
   ];
 
+  const updateActive = (active: string) => {
+    setActive(active);
+    sessionStorage.setItem('active', active);
+  };
+
   return (
     <Menu>
       <Nav>
         <Logo />
         <ul>
-          <li onClick={() => setActive(menuContent[0].slug)}>
+          <li onClick={() => updateActive(menuContent[0].slug)}>
             <StartTestIcon
               status={active === menuContent[0].slug ? 'active' : 'unactive'}
               link={menuContent[0].link}
             />
           </li>
 
-          <li onClick={() => setActive(menuContent[1].slug)}>
+          <li onClick={() => updateActive(menuContent[1].slug)}>
             <TheoryIcon
               status={active === menuContent[1].slug ? 'active' : 'unactive'}
               link={menuContent[1].link}
             />
           </li>
-          <li onClick={() => setActive(menuContent[2].slug)}>
+          <li onClick={() => updateActive(menuContent[2].slug)}>
             <ResultsIcon
               status={active === menuContent[2].slug ? 'active' : 'unactive'}
               link={menuContent[2].link}

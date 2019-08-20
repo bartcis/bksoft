@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import ThemeContext from '../context/ThemeContext';
@@ -20,6 +20,7 @@ const StartMenu = ({ path }: IProps) => {
   const [theme] = useContext(ThemeContext);
   const [menuTitle, setTitle] = useContext(MenuTitleContext);
   const [active, setActive] = useState('start');
+
   const menuContent = [
     {
       title: 'Start',
@@ -46,9 +47,23 @@ const StartMenu = ({ path }: IProps) => {
 
   currentTheme = theme;
 
+  useEffect(() => {
+    const active = sessionStorage.getItem('active');
+    if (
+      active &&
+      (active === 'start' ||
+        active === 'about' ||
+        active === 'support' ||
+        active === 'authors')
+    ) {
+      setActive(active);
+    }
+  }, [setActive]);
+
   const updateStates = (title: string, type: string) => {
     setTitle(title);
     setActive(type);
+    sessionStorage.setItem('active', type);
   };
 
   return (
