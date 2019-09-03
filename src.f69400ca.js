@@ -37442,7 +37442,7 @@ const TestGridElement = (_ref) => {
   let icon = _ref.icon,
       name = _ref.name;
   return react_1.default.createElement(Test, null, react_1.default.createElement(Wrapper, null, react_1.default.createElement(Image, {
-    src: icon,
+    src: "/icon-graves-levels.svg",
     alt: `${name}- darmowy test online`
   }), react_1.default.createElement("h3", null, name)));
 };
@@ -41221,24 +41221,24 @@ function AppWrapper() {
 const GlobalStyle = styled_components_1.createGlobalStyle`
   @font-face {
     font-family: 'nunito_sansblack';
-    src: url('/fonts/nunitosans-black-webfont.woff2') format('woff2'),
-      url('/fonts/nunitosans-black-webfont.woff2') format('woff');
+    src: url('/assets/fonts/nunitosans-black-webfont.woff2') format('woff2'),
+      url('/assets/fonts/nunitosans-black-webfont.woff2') format('woff');
     font-weight: normal;
     font-style: normal;
   }
 
   @font-face {
   font-family: 'nunito_sansregular';
-  src: url('/fonts/nunitosans-regular-webfont.woff2') format('woff2'),
-    url('/fonts/nunitosans-regular-webfont.woff') format('woff');
+  src: url('/assets/fonts/nunitosans-regular-webfont.woff2') format('woff2'),
+    url('/assets/fonts/nunitosans-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   }
 
   @font-face {
     font-family: 'nunito_sansextralight';
-    src: url('/fonts/nunitosans-extralight-webfont.woff2') format('woff2'),
-      url('/fonts/nunitosans-extralight-webfont.woff') format('woff');
+    src: url('/assets/fonts/nunitosans-extralight-webfont.woff2') format('woff2'),
+      url('/assets/fonts/nunitosans-extralight-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
   }
@@ -41252,19 +41252,19 @@ const GlobalStyle = styled_components_1.createGlobalStyle`
 
   h1 {
     color: ${() => ThemeExport_1.styledTheme.styledColors[currentTheme].font};
-    font-family: 'nunito_sansblack';
+    font-family: 'verdana';
     font-size: 1.5rem;
     margin: 1rem 0;
   }
 
   h2 {
     color: ${() => ThemeExport_1.styledTheme.styledColors[currentTheme].font};
-    font-family: 'nunito_sansblack';
+    font-family: 'verdana';
     font-size: 1.25rem;
   }
 
   h3 {
-    font-family: 'nunito_sansblack';
+    font-family: 'verdana';
     color: ${() => ThemeExport_1.styledTheme.styledColors[currentTheme].font};
     font-size: 1rem;
   }
@@ -41275,12 +41275,12 @@ const GlobalStyle = styled_components_1.createGlobalStyle`
 
   h5 {
     color: ${() => ThemeExport_1.styledTheme.styledColors[currentTheme].residualText};
-    font-family: 'nunito_sansextralight';
+    font-family: 'verdana';
   }
 
   p, ol, ul, label {
     color: ${() => ThemeExport_1.styledTheme.styledColors[currentTheme].font};
-    font-family: 'nunito_sansregular';
+    font-family: 'verdana';
   }
 
   .link {
@@ -41324,7 +41324,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51255" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57101" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
